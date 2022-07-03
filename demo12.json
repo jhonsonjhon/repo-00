@@ -1,0 +1,28 @@
+{
+"AWSTemplateFormatVersion" : "2010-09-09",
+"Description" : "AWS Sample Template EC2Instance with Parameters",
+"Parameters" : {
+				"ImageIdParm" : { "Type" : "String"},
+				"InstanceTypeParm" : { 
+				 "Type" : "String",
+				 "Default" : "t2.micro",
+				 "AllowedValues" : [ "t2.micro" , "t2.nano" , "t2.small", "t2.medium" ]
+				 },
+				 "SubnetIdParm" : { "Type" : "String" },
+				 "KeyNameParm" : { "Type" : "String" }
+
+				},
+"Resources" : {
+      "AWSFoundationEc2Instance":{
+		"Type" : "AWS::EC2::Instance",
+		"Properties" : {
+		"ImageId" : { "Ref" : "ImageIdParm"},
+		"InstanceType" : { "Ref" : "InstanceTypeParm"},
+		"SubnetId" : { "Ref" : "SubnetIdParm"},
+		"SecurityGroupIds" : ["sg-09a07d5caffc24b7a"],
+		"KeyName" : { "Ref" : "KeyNameParm"}
+		}
+
+		}
+      }
+}
